@@ -25,7 +25,11 @@ We're using [Bootstrap](http://getbootstrap.com/) and [jQuery](https://jquery.co
 
 **[Homebrew](http://brew.sh/)** - all of the following tools can be installed with Homebrew. If it's not already installed on your laptop, it's easy enough to go to the website, run the command to install it, and then continue to the next step. If you are on linux, expect to be installing some scripts and RPMs, but everything is available there as well - just not as convenient.
 
-**[JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)** - it might be nice to get the JDK 1.6 from Apple, but it's _essential_ to get the JDK 1.8 from Oracle. This is a download and package install, but it's pretty simple to do and sets up its own updater for future releases.
+**[JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)** - it is possible to get JDK 1.8 from Oracle, but it's just as easy to get the JDK 1.8 from AdoptOpenJDK, and not have to worry about Oracle's licensing. Simply:
+```bash
+$ brew tap AdoptOpenJDK/openjdk
+$ brew cask install adoptopenjdk8
+```
 
 **[Leiningen](http://leiningen.org/)** - it is the _Swiss army knife_ of Clojure development - library version control, build, test, run, deploy tool all in one with the ability to create extensions. On the Mac, this is installed easily with:
 ```bash
@@ -36,17 +40,6 @@ and on linux you can download the [lein script](https://raw.githubusercontent.co
 $ lein
 ```
 and it'll download everything it needs to run.
-
-**[Postgres](http://www.postgresql.org/)** - at the current time, this is the back-end persistence and it's really a very simple product to install and use. On the Mac, simply:
-```bash
-$ brew install postgres
-```
-and when it's done, follow the directions to run it - the configuration is fine as-is. I've used the `launchctl` version:
-```bash
-$ ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents/
-$ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-```
-and it's running everytime you log in.
 
 ### Running the REPL
 
