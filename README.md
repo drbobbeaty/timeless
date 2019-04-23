@@ -10,8 +10,12 @@ making the calculation of those time intervals very easy.
 
 ## RESTful Endpoints for the Service
 
+<p align="center">
+  <img src="doc/img/app_v0_1_1.jpg" width="550" height="367" border="0" />
+</p>
+
 There are several RESTful endpoints of this service that the application makes
-use of - but are free to be used by another service in the organization.
+use of - and are free to be used by any caller.
 
 ## Development
 
