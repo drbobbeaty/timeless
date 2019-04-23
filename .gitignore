@@ -1,0 +1,15 @@
+/target
+/lib
+/classes
+/checkouts
+/log
+/scratch
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.nrepl-port
+*.swp
+*.swo
+~$*

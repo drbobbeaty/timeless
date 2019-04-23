@@ -1,0 +1,107 @@
+#!/bin/bash
+
+#
+# Simple script to run a few "smoke tests" on the service to make sure
+# it's up and running and is operating withing normal parameters.
+#
+# $1 = mode (all, info, etc.)
+#
+
+#
+# Function to read the existing project name and version number from the
+# project.clj file, and populate the following variables with these values:
+#
+# $version = "0.22.1"
+# $project = "scoreboard"
+# $today = "2016 Oct 26"
+#
+function pull_values {
+  local fline=`head -1 $proj`
+  project=`echo ${fline} | awk '{print $2}'`
+  version=`echo ${fline} | awk '{print $3}' | tr -d '"'`
+  today=$(date +"%Y %b %d")
+}
+
+#
+# This is the simple GET `/info` endpoint test to check it against the version
+# and project names that we have pulled from project.clj.
+#
+# $1 = hostname
+#
+function smoke_info {
+	local ref='^{"app":"'${project}'","version":"'${version}'","env":"'$ename'","code":"[0-9a-f].*"}'
+	local ans=`curl --silent "https://${1}/info"`
+	if [[ ! $ans =~ $ref ]]; then
+		pass="N"
+		echo "Failed the 'GET /info' smoke test..."
+		echo $ref
+		echo $ans
+	fi
+}
+
+#
+# Set up the defaults for the script
+#
+proj="project.clj"
+mode="all"
+host=""
+ename=""
+verbose=""
+
+# next, scan ALL the args to see what we might need to know
+for arg in "$@"; do
+	case "$arg" in
+		prod|production|Production)
+			host="newsroom.guaranteedrate.com"
+			ename="prod"
+			;;
+		gra|affinity|Affinity)
+			host="newsroom.grarate.com"
+			ename="jv"
+			;;
+		dev|DEV|Dev)
+			host="newsroom.gr-dev.com"
+			ename="dev"
+			;;
+		-v|--v|-verbose|--verbose)
+			verbose='yes'
+			;;
+		*)
+			if [ `echo ${mode} | grep "$arg"` != ${mode} ]; then
+				mode=$mode" $arg"
+			fi
+			;;
+	esac
+done
+
+# see if we didn't get enough to work with
+if [ "$host" = "" -o "$ename" = "" ]; then
+	echo "Usage: smoke [prod|dev]"
+	exit 0
+fi
+
+# run through all the steps to get the job done.
+pull_values
+
+# now let's run through the list of tests and do what's being asked
+pass="Y"
+for t in "$mode"; do
+	case "$t" in
+		all|ALL)
+			smoke_info $host
+			;;
+		info|INFO)
+			smoke_info $host
+			;;
+		*)
+			;;
+	esac
+done
+
+if [ "$pass" = "N" ]; then
+	echo 'Some tests have failed - better check on them!'
+	deploy/bin/hipchat -f "Newsroom" "Some smoke tests failed in ${ename}..." >/dev/null
+else
+	echo 'All tests passed!'
+	deploy/bin/hipchat -f "Newsroom" "All smoke tests passed in ${ename}!" >/dev/null
+fi

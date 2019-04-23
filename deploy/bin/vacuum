@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#
+# This script clears out all the "stale" jars that we no longer need.
+# They have to be AT LEAST 30 days old, and we MUST keep the last 5.
+# Other than that, they can go.
+#
+
+#
+# Set up the environment for this - as we do in all scripts
+#
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/bin:$PATH"
+export LANG="en_US.UTF-8"
+
+#
+# Jump right in... find out where this is meant to run, and get there
+#
+program=`basename $0`
+cd
+
+# find all the jar files with a creation date more than 30 days ago
+output='NO'
+oldJars=`find . -maxdepth 1 -type f -name "newsroom*.jar" -ctime +30`
+if [ "$oldJars" != "" ]; then
+	recentJars=`ls -rt ./newsroom*.jar | tail -6 | head -5`
+	for i in ${oldJars}; do
+		if [ "`echo ${recentJars} | grep $i`" = "" ]; then
+			if [ "$output" = "NO" ]; then
+				echo "Running $program from `pwd` on `hostname -f`..."
+				output='YES'
+			fi
+			echo "Removing $i"
+			rm $i
+		fi
+	done
+fi
+if [ "$output" = "YES" ]; then
+	echo "vacuum of old deployments - complete"
+fi
+exit 0

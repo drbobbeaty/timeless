@@ -1,0 +1,89 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-trident > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-trident .navbar .container {
+  width: auto;
+}
+
+.btn:focus {
+  outline:none;
+}
+
+/*
+ * This is for the ID column that needs to be monospace
+ */
+.table > tbody > tr > td.fixedID {
+  font-family: Lucida, Console, monospace !important;
+  font-size: 14px;
+}
+
+/*
+ * These are the label colors for the Dashboard - yellow, orange, red
+ */
+.label-avacado {
+  background-color: #c8ffc8;
+  color: #000;
+  outline: 1px solid black;
+}
+
+.label-mild {
+  background-color: #fbf7db;
+  color: #000;
+  outline: 1px solid black;
+}
+
+.label-hot {
+  background-color: #ffd79b;
+  color: #000;
+  outline: 1px solid black;
+}
+
+.label-fire {
+  background-color: #eed5d6;
+  color: #000;
+  outline: 1px solid black;
+}
+
+.table > tbody > tr.avacado > td, .table > tbody > tr > td.avacado {
+  background-color: #d0ffd0 !important;
+}
+
+.table > tbody > tr.mild > td, .table > tbody > tr > td.mild {
+  background-color: #fbf7db !important;
+}
+
+.table > tbody > tr.hot > td, .table > tbody > tr > td.hot {
+  background-color: #ffd79b !important;
+}
+
+.table > tbody > tr.fire > td, .table > tbody > tr > td.fire {
+  background-color: #eed5d6 !important;
+}
+
+.table-hover > tbody > tr.avacado:hover > td {
+  background-color: #c8eec8 !important;
+}
+
+.table-hover > tbody > tr.mild:hover > td {
+  background-color: #f9efbf !important;
+}
+
+.table-hover > tbody > tr.hot:hover > td {
+  background-color: #fdc274 !important;
+}
+
+.table-hover > tbody > tr.fire:hover > td {
+  background-color: #e6c0c0 !important;
+}
