@@ -19,7 +19,7 @@
   "Function to parse a date and time string into a Joda DateTime.
   Returns the argument if it's not a string or can't be parsed."
   [s]
-  (if (and (string? s) (not-empty s))
+  (if (and (string? s) (not-empty s) (not= s "undefined"))
     (try
       (or (parse-long s :default nil) (parse timeline-primary s))
       (catch java.lang.IllegalArgumentException iae

@@ -69,13 +69,13 @@ function buildTimelineTable(times) {
                                          "row_below": {
                                            disabled: function() {
                                              // disable this for invalid location(s)
-                                             return this.getSelected()[0] <= 4;
+                                             return false;
                                            }
                                          },
                                          "remove_row": {
                                            disabled: function() {
                                              // disable this for invalid location(s)
-                                             return this.getSelected()[0] < 0;
+                                             return this.getSelected()[0] < 3;
                                            }
                                          }
                                        }
