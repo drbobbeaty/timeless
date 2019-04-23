@@ -18,8 +18,7 @@
             [timeless.logging :refer [log-execution-time!]]
             [timeless.util :refer [ucase git-commit git-sha project-version
                                      nil-if-zero nil-if-empty to-uuid
-                                     remove-nil-keys update-keys
-                                     ]]
+                                     remove-nil-keys update-keys]]
             [ring.middleware.cors :as cors]
             [ring.middleware.cookies :refer [wrap-cookies]]
             [ring.middleware.jsonp :refer [wrap-json-with-padding]]

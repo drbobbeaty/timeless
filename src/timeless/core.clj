@@ -5,8 +5,7 @@
   								  [clj-time.format :refer [formatter parse]]
             [clojure.tools.logging :refer [info infof warn warnf error errorf]]
             [timeless.logging :refer [log-execution-time!]]
-            [timeless.util :refer [parse-int parse-long joda?]]
-            ))
+            [timeless.util :refer [parse-int parse-long joda?]]))
 
 (def timeline-primary
   "This is a custom formatter to allow us to parse Timmeline date time strings."
