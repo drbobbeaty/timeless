@@ -1,6 +1,7 @@
 (ns timeless.util
   "The namespace for the utility functions and tools used in several namespaces."
-  (:require [clj-time.core :refer [time-zone-for-id
+  (:require [cheshire.core :as json]
+											 [clj-time.core :refer [time-zone-for-id
                                    now plus minus weeks hours date-time]]
             [clj-time.format :refer [formatter parse]]
             [clojure.core.memoize :as memo]

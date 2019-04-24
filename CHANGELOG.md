@@ -1,3 +1,16 @@
+## v0.2.0 / 2019 Apr 24
+
+> This release adds everything we need to deploy the app to Heroku on their
+> free platform. This will make it a lot easier to let folks see the work,
+> and at the same time, this is a great way to get a project up there as a
+> template for other projects.
+
+* **Add** - added all the Heroku specifics to the code
+
+```clojure
+[timeless "0.2.0"]
+```
+
 ## v0.1.1 / 2019 Apr 23
 
 > This release fixes two issues with the app, one is in trying to parse the

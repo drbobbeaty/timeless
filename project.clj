@@ -1,10 +1,12 @@
-(defproject timeless "0.1.1"
-  :description "Simple seqwuencing of log timestamps"
+(defproject timeless "0.2.0"
+  :description "Simple sequencing of log timestamps"
   :url "http://github.com/drbob/timeless"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :source-paths ["src"]
-  :min-lein-version "2.5.3"
+  :min-lein-version "2.7.1"
+  :plugins [[environ/environ.lein "0.3.1"]]
+  :hooks [environ.leiningen.hooks]
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [clj-time "0.12.0"]
                  [org.clojure/math.numeric-tower "0.0.2"]
@@ -31,9 +33,12 @@
                  [rwilson/ring-cors "0.1.9"]
                  ;; URL parsing components
                  [clojurewerkz/urly "1.0.0"]
-                   ]
+                 ;; Heroku environment tools
+                 [environ "1.0.0"]]
   :aot [timeless.main]
   :uberjar-merge-with {#"\.sql\.Driver$" [#(str (clojure.string/trim (slurp %)) "\n") str spit]}
+  :uberjar-name "timeless-standalone.jar"
   :main timeless.main
   :profiles {:repl {:main timeless.main}
-             :dev {:main timeless.main/-dev-main}})
+             :dev {:main timeless.main/-dev-main}
+             :uberjar {:main timeless.main, :aot :all}})
