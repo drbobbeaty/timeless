@@ -4,6 +4,7 @@
   (:require [clojure.java.io :refer [resource input-stream]]
             [clojure.tools.cli :refer [cli]]
             [clojure.tools.logging :refer [info infof warn warnf error errorf]]
+            [environ.core :refer [env]]
             [timeless.core :as core]
             [timeless.server :as svr]
             [ring.adapter.jetty :as jt]
@@ -19,11 +20,12 @@
              ["-s" "--ssl-port" "Listen on this port" :default 8443 :parse-fn #(Integer. %)]
              ["-v" "--verbose" :flag true])
         quiet? (:quiet params)
-        fixed? (:fixed params)]
+        fixed? (:fixed params)
+        port (Integer. (or (env :port) (:port params) 5000))]
     (cond
       (= "web" action)
 		      (try
-		        (jt/run-jetty app {:port (:port params)})
+		        (jt/run-jetty app {:port port})
 		        ; finally, close down the async jobs
 		        (finally
 		          ))

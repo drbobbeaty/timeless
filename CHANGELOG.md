@@ -1,3 +1,15 @@
+## v0.2.1 / 2019 Apr 24
+
+> This release fixes up the pulling of the port number from Heroku's
+> environment. This was pretty important, as it has to know where to look for
+> the service, and we can't use _just any_ port. This should help, I think.
+
+* **Add** - added in the `env` support for Heroku, and pulled the port number
+
+```clojure
+[timeless "0.2.1"]
+```
+
 ## v0.2.0 / 2019 Apr 24
 
 > This release adds everything we need to deploy the app to Heroku on their
