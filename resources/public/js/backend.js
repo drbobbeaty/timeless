@@ -28,7 +28,7 @@ function fetchEpoch(row, arg) {
     // make the call to get the attachments to this loan
     $.ajax({type: "GET",
             cache: false,
-            url: "/v1/epochize/" + arg,
+            url: "/v1/epochize/" + encodeURIComponent(arg),
             dataType: "json",
             success: function(data) {
               // show the docs all the time - we may add to them

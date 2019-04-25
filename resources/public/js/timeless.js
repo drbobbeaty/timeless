@@ -4,7 +4,7 @@
  */
 function mkTimelineData(times) {
   var data = [['2019-04-23 08:02:48.412', null, null],
-              ['2019-04-23 08:02:48.696', null, null],
+              ['April 23rd 2019, 08:02:48.696', null, null],
               ['2019-04-23 08:03:18.596', null, null],
               [null, null, null]
              ];

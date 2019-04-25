@@ -1,8 +1,9 @@
 (ns timeless.core
   "The functions used to implement the service logic."
-  (:require [clj-time.coerce :refer [to-long]]
-  										[clj-time.core :refer [now time-zone-for-id]]
-  								  [clj-time.format :refer [formatter parse]]
+  (:require [clojure.string :as cs]
+            [clj-time.coerce :refer [to-long]]
+            [clj-time.core :refer [now time-zone-for-id]]
+            [clj-time.format :refer [formatter parse]]
             [clojure.tools.logging :refer [info infof warn warnf error errorf]]
             [timeless.logging :refer [log-execution-time!]]
             [timeless.util :refer [parse-int parse-long joda?]]))
@@ -12,7 +13,8 @@
   (formatter
     (time-zone-for-id "US/Central")
     "yyyy-MM-dd HH:mm:ss.SSS"
-    "yyyy/MM/dd HH:mm:ss.SSS"))
+    "yyyy/MM/dd HH:mm:ss.SSS"
+    "MMMM dd yyyy, HH:mm:ss.SSS"))
 
 (defn parse-dt
   "Function to parse a date and time string into a Joda DateTime.
@@ -20,7 +22,8 @@
   [s]
   (if (and (string? s) (not-empty s) (not= s "undefined"))
     (try
-      (or (parse-long s :default nil) (parse timeline-primary s))
+      (or (parse-long s :default nil)
+          (parse timeline-primary (cs/replace s #"(\d)(st|nd|rd|th) " "$1 ")))
       (catch java.lang.IllegalArgumentException iae
         (warnf "Unable to parse %s into a DateTime! %s" s (.getMessage iae))
         s))

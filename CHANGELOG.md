@@ -1,3 +1,19 @@
+## v0.3.0 / 2019 Apr 25
+
+> This release adds a new timestamp formatter to the mix so that we cover
+> yet another base for the users. This required that we add sttrict encoding
+> of the argument in the URL on the call, but that's just being smart anyway.
+
+* **Add** - added the `MMMM dd yyyy, HH:mm:ss.SSS` format to the formatter list
+* **Add** - added the stripping of `st`, `nd`, `rd`, and `th` on the end of the
+  date in the timestamp so that we don't have to hassle with it on the parsing.
+* **Fix** - added the URI encoding to the argument on the call to the service.
+* **Update** - removed some nasty whitespace from the bad tab settings.
+
+```clojure
+[timeless "0.3.0"]
+```
+
 ## v0.2.1 / 2019 Apr 24
 
 > This release fixes up the pulling of the port number from Heroku's
