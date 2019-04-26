@@ -4,10 +4,14 @@
 ifeq ($(shell uname),Linux)
 MAKE = make
 LEIN = lein
+GIT = git
+HEROKU = heroku
 endif
 ifeq ($(shell uname),Darwin)
 MAKE = make
 LEIN = lein
+GIT = git
+HEROKU = heroku
 endif
 
 #
@@ -21,7 +25,6 @@ TARGET_DIR = target
 #
 DEPLOY = bin/deploy
 SMOKE = bin/smoke
-HIPCHAT = deploy/bin/hipchat
 VERCHG = bin/verchg
 VER = $(shell head -1 project.clj | sed -e 's/^.* \"//' -e 's/\"//')
 SHA ?= $(shell git rev-parse --abbrev-ref HEAD)
@@ -54,15 +57,15 @@ jar:
 	@ $(LEIN) uberjar &>/dev/null
 
 deploy:
-	@ git push heroku master
+	@ $(GIT) push heroku master
 
 start:
-	@ heroku ps:scale web=1
+	@ $(HEROKU) ps:scale web=1
 
 stop:
-	@ heroku ps:scale web=0
+	@ $(HEROKU) ps:scale web=0
 
-smoke/production:
+smoke:
 	@ $(SMOKE) prod all
 
 clean:

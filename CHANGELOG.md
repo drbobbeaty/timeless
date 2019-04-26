@@ -1,3 +1,20 @@
+## v0.4.0 / 2019 Apr 26
+
+> This release adds the ability to parse naked times and infer the dates from
+> the data in the table - assuming 'today', if we have nothing concrete. At the
+> same time, we assumed that the times are in _ascending_ order, so that we
+> look at the times, and if the dates are missing, we add a day to the latter
+> one to keep them in order.
+
+* **Add** - added the scanning for the date when dealing with naked times
+* **Add** - added the day offset for naked times where the time is after the
+  time in the previous row.
+* **Fix** - cleaned up the `deploy` directory - it's unnecessary for Heroku
+
+```clojure
+[timeless "0.4.0"]
+```
+
 ## v0.3.0 / 2019 Apr 25
 
 > This release adds a new timestamp formatter to the mix so that we cover

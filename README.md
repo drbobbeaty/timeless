@@ -45,6 +45,15 @@ $ lein
 ```
 and it'll download everything it needs to run.
 
+**[Heroku](http://heroku.com/)** - there is no simpler place to host a solid
+service/app than Heroku - and these are the tools necessary to deploy to your
+own dyno on their service. They are installed easily with:
+```bash
+$ brew install heroku/brew/heroku
+```
+and if you follow along on the Heroku [Getting Started with Clojure](https://devcenter.heroku.com/articles/getting-started-with-clojure?singlepage=true)
+page, you'll be ready to go in no time.
+
 ### Running the REPL
 
 Once the repo is down and the necessary tools are installed, you can run the clojure REPL, this allows you to run and work with the code in an interactive shell. Simply:
