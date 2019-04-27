@@ -252,6 +252,8 @@ var timeDiff = function(instance, td, row, col, prop, value) {
     var a = instance.getDataAtCell(row, 1);
     var b = instance.getDataAtCell((row - 1), 1);
     value = ($.isNumeric(a) ? a : 0) - ($.isNumeric(b) ? b : 0);
-    Handsontable.NumericRenderer.apply(this, arguments);
+  } else {
+    value = null;
   }
+  Handsontable.NumericRenderer.apply(this, arguments);
 }

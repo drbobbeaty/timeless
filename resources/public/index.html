@@ -57,7 +57,12 @@
       <!-- Main table of what the latest load times were -->
       <div id="mr_big" class="panel panel-primary" style="display: none;">
         <div class="panel-heading">
-          <h3 class="panel-title">Timeline Evolution Worksheet</h3>
+          <h3 class="panel-title"><span id="timelineTitle">Timeline Evolution Worksheet</span>
+            <!-- search box for the whatsUp table -->
+            <form id="wipe_table" class="navbar-form navbar-right pullright" role="search" style="margin-top: -8px; display: visible;">
+              <button id="wipeTable" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+            </form>
+          </h3>
         </div>
 
         <div class="panel-body">
@@ -104,6 +109,11 @@
     <script src="/js/security.js?version=2"></script>
     <script src="/js/timeless.js?version=2"></script>
     <script type="text/javascript">
+      // set up the form components to work as we need them
+      $("#wipe_table").submit( function(e) {
+        e.preventDefault();
+        wipeTable('#timelineTable');
+      });
       // this is for impersonation - to load up what's needed - per page
       function loadItUp(email) {
         loadTimeline(email);

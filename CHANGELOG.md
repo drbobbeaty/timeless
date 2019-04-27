@@ -1,3 +1,17 @@
+## v0.5.0 / 2019 Apr 27
+
+> This release adds a `clear` button to the UI so that the table can be cleared
+> of all the data easily, and then new data can flow in without worrying about
+> leaving bad stuff around in the cells. This was just another request, and it
+> was nice to dig into the guts of the HandsOnTable again. Good stuff.
+
+* **Add** - added the `wipeTable()` function, and tied it to the button on the
+  UI.
+
+```clojure
+[timeless "0.5.0"]
+```
+
 ## v0.4.0 / 2019 Apr 26
 
 > This release adds the ability to parse naked times and infer the dates from

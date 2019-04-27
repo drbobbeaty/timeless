@@ -1,4 +1,4 @@
-(defproject timeless "0.4.0"
+(defproject timeless "0.5.0"
   :description "Simple sequencing of log timestamps"
   :url "http://github.com/drbob/timeless"
   :license {:name "Eclipse Public License"

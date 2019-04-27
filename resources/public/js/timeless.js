@@ -94,21 +94,15 @@ function buildTimelineTable(times) {
 }
 
 /*
- * Function to take the breakdown data from the back-end and fill
- * out the few fields on the page - not the table.
+ * Function to clear out the timestamps from the table, and then refresh
+ * the table to make sure that it's all cleared out and ready to go.
  */
-function buildBreakdown(stats) {
-  // formatting of the number
-  var fmt = function (x) {
-    if (x) {
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    } else {
-      return "0";
-    }
+function wipeTable(tid) {
+  // $(tid).handsontable('populateFromArray', 0, 0, [[null, null, null]]);
+  var rows = $(tid).handsontable('countRows');
+  for (var i = 0; i < rows; i++) {
+    $(tid).handsontable('setDataAtCell', i, 0, '');
+    $(tid).handsontable('setDataAtCell', i, 1, '');
   }
-  // now populate the fields from the data
-  $('#need_fees').html(fmt(stats['need-fees']));
-  $('#hit_fees').html(fmt(stats['hit-fees']));
-  $('#missed_fees').html(fmt(stats['missed-fees']));
 }
 
