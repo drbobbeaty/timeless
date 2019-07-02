@@ -98,7 +98,6 @@ function buildTimelineTable(times) {
  * the table to make sure that it's all cleared out and ready to go.
  */
 function wipeTable(tid) {
-  // $(tid).handsontable('populateFromArray', 0, 0, [[null, null, null]]);
   var rows = $(tid).handsontable('countRows');
   for (var i = 0; i < rows; i++) {
     $(tid).handsontable('setDataAtCell', i, 0, '');

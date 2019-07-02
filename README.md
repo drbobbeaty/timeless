@@ -17,6 +17,21 @@ making the calculation of those time intervals very easy.
 There are several RESTful endpoints of this service that the application makes
 use of - and are free to be used by any caller.
 
+### Convert a Timestamp String
+
+Given a timestamp string, `ts`:
+```
+GET /v1/epochize/ts
+```
+will do it's best to return the milliseconds since epoch of the argument as
+a JSON object of the form:
+```json
+{
+  "epochMsec": 123456789
+}
+```
+this can then be used in any way the caller desires.
+
 ## Development
 
 ### UI
